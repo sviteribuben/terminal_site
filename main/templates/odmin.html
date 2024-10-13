@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Page-Enter" 
+content="Wipe down (Duration=5, Transition=2)">
+<title>Свитер &amp; Бубен</title>
+<style type="text/css">
+th, td {
+	font-family: Terminal;
+	font-size: 18px;
+	color: #fdffb4;
+	border-color:#FFFFFF;
+}
+body {
+	font-family: Terminal;
+	font-size: 18px;
+	color: #fdffb4;
+	background-color: #000000;
+	background-repeat: no-repeat;
+	background-image: url();
+	margin-left: 0px;
+	margin-top: 50px;
+}
+a:link {
+	text-decoration: none;
+	color: #fdffb4;
+}
+a:visited {
+	text-decoration: none;
+	color: #fdffb4;
+}
+a:hover {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: red;
+	text-shadow: #000000 1px 1px ; 
+}
+a:active {
+	text-decoration: none;
+	color: #fdffb4;
+}
+.style1 {
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.style3 {color: #003efd}
+table.out
+{
+background-color: #003efd;
+border:2px solid #fff;
+
+} 
+
+
+#divLinks   {position:none;  visibility:hidden;}
+
+#divLinks a { font-family:terminal; font-size:18px; font-weight:700;}
+
+#divMessage {position:none; font-family:terminal; font-size:18px; higth:500px; }
+
+
+
+#layer1, #layer2 {
+position: relative; /* Относительное позиционирование */
+   }
+   #layer1 {
+    width: 400px;
+	font-size: 18px; /* Размер шрифта в пикселах */
+    color: #fff; /* Синий цвет текста */
+    background-color: #red;
+   }
+   #layer2 {
+    width: 300px;
+    background-color: #000;
+	
+   }
+  #layer1 { z-index: 1; }
+  #layer2 { z-index: 1.1; } 
+</style>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript">
+
+function lib_bwcheck(){ //Browsercheck (needed)
+
+	this.ver=navigator.appVersion
+
+	this.agent=navigator.userAgent
+
+	this.dom=document.getElementById?1:0
+
+	this.opera5=this.agent.indexOf("Opera 5")>-1
+
+	this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom && !this.opera5)?1:0; 
+
+	this.ie6=(this.ver.indexOf("MSIE 6")>-1 && this.dom && !this.opera5)?1:0;
+
+	this.ie4=(document.all && !this.dom && !this.opera5)?1:0;
+
+	this.ie=this.ie4||this.ie5||this.ie6
+
+	this.mac=this.agent.indexOf("Mac")>-1
+
+	this.ns6=(this.dom && parseInt(this.ver) >= 5) ?1:0; 
+
+	this.ns4=(document.layers && !this.dom)?1:0;
+
+	this.bw=(this.ie6 || this.ie5 || this.ie4 || this.ns4 || this.ns6 || this.opera5)
+
+	return this
+
+}
+
+var bw=new lib_bwcheck()
+
+if(document.layers){ //NS4 resize fix...
+
+	scrX= innerWidth; scrY= innerHeight;
+
+	onresize= function(){if(scrX!= innerWidth || scrY!= innerHeight){history.go(0)} }
+
+}
+
+msgFont= "terminal"	// The font for the message
+
+msgFontSize= 18				// Set the fontSize in px
+
+msgFontColor="#ffffff"		// Set the fontColor
+
+msgWidth= "300"				// Set the width of the messageblock here for netscape 4
+
+
+
+//Set the text you want to display on mouseover here.
+
+messages=new Array()
+
+messages[0]="" //This is the default text that appears when you mouse out.
+
+messages[1]="Time, Date, Hard Disk Type..."
+
+messages[2]="Link nr 2 (this one) is even better!"
+
+messages[3]="This link however, nr3, isn't that good..."
+
+messages[4]="Maybe you should try this one?<br>I'll write some more text to show that it wraps correctly to several lines."
+
+messages[5]="<img src=\"changetext_image.gif\" width=\"56\" height=\"54\" alt=\"\" border=\"0\"><br>As you see, you can put html in here too, like an image."
+
+messages[6]="Later all.."
+
+
+
+
+function makeChangeTextObj(obj){
+
+   	this.css = bw.dom?document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?document.layers[obj]:0;	
+
+   	this.writeref = bw.dom?document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?document.layers[obj].document:0;	
+
+	this.writeIt = b_writeIt;					
+
+}
+
+function b_writeIt(text,num){
+
+	if (bw.ns4){
+
+		this.writeref.write(text)
+
+		this.writeref.close()
+
+	}
+
+    else this.writeref.innerHTML = messages[num]
+
+}
+
+
+
+//The mouoseover function. Calls the writeIt method to write the text to the div.
+
+function changeText(num){
+
+	if(bw.bw) oMessage.writeIt('<table width="'+msgWidth+'" border="0" cellpadding="0" cellspacing="0"><tr><td><span style="font-size:'+msgFontSize+'px; font-family:'+msgFont+'; color:'+msgFontColor+'">'+messages[num]+'</span></td></tr></table>', num)
+
+}
+
+
+
+//The init function. Calls the object constructor and initiates some properties.
+
+function changeTextInit(){
+
+	//Fixing the browsercheck for opera... this can be removed if the browsercheck has been updated!!
+
+	bw.opera5 = (navigator.userAgent.indexOf("Opera")>-1 && document.getElementById)?true:false
+
+	if (bw.opera5) bw.ns6 = 0
+
+	
+
+	oMessage = new makeChangeTextObj('divMessage')
+
+	oLinks = new makeChangeTextObj('divLinks')
+
+	//Setting the style properties of the text layer.
+
+	if(bw.dom || bw.ie4){
+
+		with(oMessage.writeref.style){fontFamily=msgFont; fontSize=msgFontSize+"px"; color=msgFontColor}
+
+	}
+
+	//Both layers are hidden by default to prevent users from mousing over them and creating errors while the page loads.
+
+	oMessage.css.visibility= "visible"
+
+	oLinks.css.visibility= "visible"
+
+}
+
+
+
+//If the browser is ok, the init function is called on pageload. 
+
+if (bw.bw) onload = changeTextInit
+
+</script>
+
+
+</head>
+
+<body>
+<table width="830" height="556" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#003efd">
+  <tr>
+    <th scope="col"><p align="center" class="style1">Phoenix - AwardBIOS CMOS Setup Utility</p>
+      <table  class="out" width="800" border="1" align="center" cellpadding="2" cellspacing="0" >
+        <tr>
+          <th scope="col"><table class="out" width="100%" border="1" cellpadding="3" cellspacing="0" >
+              <tr >
+                <th  width="50%" height="270" scope="col"><blockquote>
+                   <div align="left" class="box" id="divLinks"> 
+           <p><a href="#" onmouseover="changeText(1)" onmouseout="changeText(0)">&#9658; Standart CMOS Fatures</a></span></p>
+           <p><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">&#9658; Advanced BIOS Fatures</a></span></p>
+           <p> <a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">&#9658; Advanced Chipset Fatures</a></span></p>
+           <p><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">&#9658; Integrated Peripherals</a></span></p>
+           <p> <a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">&#9658; Power Management Setup</a></span></p>
+           <p> <a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">&#9658; PnP/PCI Fatures</a></span></p>
+                   
+                  
+                </blockquote></th>
+                <th width="50%" height="270" scope="col"><blockquote>
+                  <p align="left"><span class="style3">&#9658;</span><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">Load Fail-Save Defaults</a></span></p>
+                  </div>
+            <p align="left"><span class="style3">&#9658;</span><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">Load Optimized Defaults</a></span></p>
+            <p align="left"><span class="style3">&#9658;</span><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">Set Supervisor Password</a></span></p>
+            <p align="left"><span class="style3">&#9658;</span><a href="#" onmouseover="changeText(2)" onmouseout="changeText(0)">Set User Password</a></p>
+            <p align="left"><span class="style3">&#9658;</span><a href="#" onclick="document.getElementById('save').style.display='block'; return false;" title="Сэйв энд Ексит">Save &amp; Exit Setup</a></p>
+            <p align="left"><span class="style3">&#9658;</span><a href="#" onclick="document.getElementById('without').style.display='block'; return false;" title="Екст Визаут Сэйвинг">Exit Without Saving</a></p>
+                 </blockquote>
+                </th>
+              </tr>
+              <tr>
+                <td colspan="2"><table width="100%" height="88" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th width="50%" scope="col"> <div align="left">
+                          <p class="style1"> Esc : Quit </p>
+                        <p class="style1"> F10 : Save &amp; Exit Setup</p>
+                      </div></th>
+                      <th width="50%" scope="col"><p align="left" class="style1">&uarr; &darr; &rarr;  &larr;: Select Item</p></th>
+                    </tr>
+                </table></td>
+              </tr>
+              <tr higth="500px">
+                <td colspan="2" ><table width="100%" height="64" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th scope="col"><div id="divMessage" align="center"></div></th>
+                    </tr>
+                </table></td>
+              </tr>
+          </table></th>
+        </tr>
+      </table>
+      <p>&nbsp;</p></th>
+  </tr>
+</table>
+<div id="without"  >
+  <table width="380" height="100" border="2" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+    <tr>
+      <th scope="col"><table width="355" height="83" border="0" cellpadding="0" cellspacing="0" bgcolor="#FF0000">
+        <tr>
+          <th colspan="2" scope="col">Exit Without Saving(Y/N)?</th>
+        </tr>
+        <tr>
+          <th width="177" height="41" scope="col"><table width="91" border="0" align="center" cellpadding="0" cellspacing="0" >
+              <tr>
+                <th scope="col">[<a href="exit_without.html" class="box">Yes</a>]</th>
+              </tr>
+          </table></th>
+          <th width="178" scope="col"><table width="90" border="0" align="center" cellpadding="0" cellspacing="0" >
+              <tr>
+                <th scope="col">[<a href="#" class="box" onclick="document.getElementById('without').style.display='none'; return false;">No</a>]</th>
+              </tr>
+          </table></th>
+        </tr>
+      </table></th>
+    </tr>
+  </table>
+</div>
+<div id="save"  >
+  <table width="380" height="100" border="2" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+    <tr>
+      <th scope="col"><table width="355" height="83" border="0" cellpadding="0" cellspacing="0" bgcolor="#FF0000">
+        <tr>
+          <th colspan="2" scope="col">Save and Exit(Y/N)?</th>
+        </tr>
+        <tr>
+          <th width="177" height="41" scope="col"><table width="91" border="0" align="center" cellpadding="0" cellspacing="0" >
+              <tr>
+                <th scope="col">[<a href="sib_banner.html" class="box">Yes</a>]</th>
+              </tr>
+          </table></th>
+          <th width="178" scope="col"><table width="90" border="0" align="center" cellpadding="0" cellspacing="0" >
+              <tr>
+                <th scope="col">[<a href="#" class="box" onclick="document.getElementById('save').style.display='none'; return false;">No</a>]</th>
+              </tr>
+          </table></th>
+        </tr>
+      </table></th>
+    </tr>
+  </table>
+</div>
+<!-- Yandex.Metrika counter -->
+<div style="display:none;"><script type="text/javascript">
+(function(w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter7268500 = new Ya.Metrika({id:7268500, enableAll: true});
+        }
+        catch(e) { }
+    });
+})(window, 'yandex_metrika_callbacks');
+</script></div>
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div><img src="//mc.yandex.ru/watch/7268500" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+
+
+</html>

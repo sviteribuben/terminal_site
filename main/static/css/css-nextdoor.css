@@ -1,0 +1,37 @@
+body {
+    font-family: 'Press Start 2P', Terminal, monospace;
+    font-size: 18px;
+    color: #fdffb4;
+    background-color: #000000;
+    margin: 50px 0 0 0;
+}
+th, td {
+    border-color: #FFFFFF;
+}
+a {
+    text-decoration: none;
+    color: #fdffb4;
+}
+a:hover {
+    color: #ffffff;
+    background-color: red;
+    text-shadow: #000000 1px 1px;
+}
+table.out {
+    background-color: #003efd;
+    border: 2px solid #fff;
+}
+#divMessage {
+    text-align: center;
+}
+#save {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+#save table {
+    background-color: #FF0000;
+}
