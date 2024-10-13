@@ -1,0 +1,23 @@
+body,td,th {
+	font-family: 'Press Start 2P';
+	font-size: 22px;
+}
+body {
+	background-color: #000000;
+	cursor: url(images/cursor.gif), progress !important;
+}
+.style1 {color: #FFFFFF}
+.style2 {
+	color: #FFFFFF;
+	font-family: 'Press Start 2P';
+}
+textarea 
+{
+  background: #000;
+  border: 1px solid #000;
+  font-family: 'Press Start 2P';
+  font-size:14px;
+  color:#FFFFFF;
+  
+}
+.style3 {color: #FFFFFF; font-family: 'Press Start 2P';}

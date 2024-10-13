@@ -1,13 +1,12 @@
-# terminal_site/urls.py
-from django.contrib import admin
-from django.urls import blog, contacts, cv, include, path
+# terminal_site/main/urls.py
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('main.urls')),
-    path('contacts/', contacts, name='contacts'),
-    path('blog/', blog, name='blog'),
-    path('cv/', cv, name='cv'),
+    path("", views.home, name="home"),
+    path("contacts/", views.contacts, name="contacts"),
+    path("blog/", views.blog, name="blog"),
+    path("cv/", views.cv, name="cv"),
+    path("sviteribuben/", views.sviteribuben, name="sviteribuben"),
+    path("nextdoor/", views.nextdoor, name="nextdoor"),  # Ensure this line is present
 ]
-
-

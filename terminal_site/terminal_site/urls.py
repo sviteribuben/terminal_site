@@ -1,12 +1,8 @@
+# terminal_site/terminal_site/urls.py
 from django.contrib import admin
 from django.urls import include, path
 
-from main import views  # Import views from the main app
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),  # Assuming you want to include the home view
-    path('contacts/', views.contacts, name='contacts'),
-    path('blog/', views.blog, name='blog'),
-    path('cv/', views.cv, name='cv'),
+    path("admin/", admin.site.urls),
+    path("", include("main.urls")),  # Ensure this line is present to include main app URLs
 ]
