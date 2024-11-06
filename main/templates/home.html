@@ -1,3 +1,4 @@
+{% load static %}
 <!-- main/templates/main/home.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,48 @@
             background-color: white;
             color: black;
         }
+        .about-section {
+            border: 2px solid #00b4d8; /* Terminal-like border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background for terminal effect */
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+        }
+        .about-section img {
+            max-width: 100%;
+            height: 260px; /* Set image height to 260px */
+        }
+        .about-text {
+            flex: 1;
+            padding: 20px;
+        }
+        .flat-button {
+            background-color: transparent;
+            border: 1px solid white;
+            padding: 10px 20px;
+            margin: 10px;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+        }
+        .flat-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .meme-section {
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .meme-section img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +77,19 @@
         <a href="/blog">Blog</a>
         <a href="/cv">CV</a>
         <a href="/sviteribuben">Sviteribuben</a>
+    </div>
+
+    <div class="about-section">
+        <img src="{% static 'images/photo_top.jpg' %}" alt="About Me">
+        <div class="about-text">
+            <h2>Hi there! I'm <span style="color: #00b4d8;">Dmitry Boldyrev</span> - Data Analyst in ATOM. Ex Data Scientist in EOS.</h2>
+            <div>
+                <a href="https://github.com/yourusername" class="flat-button">GitHub</a>
+                <a href="https://www.linkedin.com/in/yourusername" class="flat-button">LinkedIn</a>
+                <a href="https://leetcode.com/yourusername" class="flat-button">LeetCode</a>
+                <a href="https://telegram.me/yourusername" class="flat-button">Telegram</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
