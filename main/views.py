@@ -23,3 +23,9 @@ def sviteribuben(request):
 
 def nextdoor(request):
     return render(request, "nextdoor.html")
+
+def porno_bunner(request):
+    return render(request, "sib_banner.html")  # Ensure this line is present
+
+def exit_without(request):
+    return render(request, "exit_without.html")  # Ensure this line is present
